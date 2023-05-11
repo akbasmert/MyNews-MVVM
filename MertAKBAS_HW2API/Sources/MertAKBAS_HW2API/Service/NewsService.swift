@@ -19,7 +19,6 @@ public class PopularNewsService: PopularNewsServiceProtocol {
         
         let urlStr = "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=HGhvelkswdspalqFAoZjJ87OFhXxGARa"
         let decoder = Decoders.dateDecoder
-    
         
         guard let url = URL(string: urlStr) else {
             return
