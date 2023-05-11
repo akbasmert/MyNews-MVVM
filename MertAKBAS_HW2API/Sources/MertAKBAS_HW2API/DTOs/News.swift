@@ -15,8 +15,8 @@ public struct NewsResult: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case status, copyright, section
-        case lastUpdated
-        case numResults
+        case lastUpdated = "last_updated"
+        case numResults = "num_results"
         case results
     }
 }
@@ -31,11 +31,11 @@ public struct News: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case title, abstract, url, byline
-        case updatedDate
-        case createdDate
-        case publishedDate
+        case updatedDate  = "updated_date"
+        case createdDate  = "created_date"
+        case publishedDate = "published_date"
         case multimedia
-        case shortURL
+        case shortURL = "short_url"
     }
 }
 
