@@ -8,10 +8,10 @@
 import Foundation
 
 public struct NewsResult: Decodable {
-    let status, copyright, section: String?
-    let lastUpdated: Date?
-    let numResults: Int?
-    let results: [News]?
+    public let status, copyright, section: String?
+    public let lastUpdated: Date?
+    public let numResults: Int?
+    public let results: [News]?
 
     enum CodingKeys: String, CodingKey {
         case status, copyright, section
@@ -22,12 +22,12 @@ public struct NewsResult: Decodable {
 }
 
 public struct News: Decodable {
-    let title, abstract: String?
-    let url: String?
-    let byline: String?
-    let updatedDate, createdDate, publishedDate: Date?
-    let multimedia: [Multimedia]?
-    let shortURL: String?
+    public let title, abstract: String?
+    public let url: String?
+    public let byline: String?
+    public let updatedDate, createdDate, publishedDate: Date?
+    public let multimedia: [Multimedia]?
+    public let shortURL: String?
 
     enum CodingKeys: String, CodingKey {
         case title, abstract, url, byline
@@ -40,7 +40,7 @@ public struct News: Decodable {
 }
 
 public struct Multimedia: Decodable {
-    let url: String?
-    let height, width: Int?
+    public let url: String?
+    public let height, width: Int?
 }
 

@@ -25,7 +25,7 @@ protocol NewsViewModelProtocol {
     var cellPadding: Double { get }
     
     func fetchData()
-    func movie(_ index: Int) -> News?
+    func news(_ index: Int) -> News?
     func calculateCellHeight(collectionViewWidth: Double) -> (width: Double, height: Double)
 }
 
@@ -59,6 +59,7 @@ final class NewsViewModel {
             case .success(let news):
              //   print("Mert: \(movies)")
                 self.news = news
+                print(news)
                 // TODO: collectionview reload data
                 // View Controllarda collectionview i güncelle.
                 self.delegate?.reloadData()
@@ -82,7 +83,7 @@ extension NewsViewModel: NewsViewModelProtocol {
         fetchNews()
     }
     
-    func movie(_ index: Int) -> News? {
+    func news(_ index: Int) -> News? {
         news[index] //
     }
     

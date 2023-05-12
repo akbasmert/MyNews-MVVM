@@ -54,6 +54,9 @@ extension ViewController: UICollectionViewDataSource {
        // if let movie = self.viewModel.movie(indexPath.row) {
            // cell.configure(moive: movie)
       //  }
+        if let news = self.newsViewModel.news(indexPath.row) {
+            cell.configure(news: news)
+        }
         
         return cell
     }
