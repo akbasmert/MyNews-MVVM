@@ -43,7 +43,7 @@ final class ViewController: UIViewController, LoadingShowable {
   
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return newsViewModel.numberOfItems
     }
@@ -51,14 +51,15 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeCell(cellType: NewsListCell.self, indexPath: indexPath)
-       // if let movie = self.viewModel.movie(indexPath.row) {
-           // cell.configure(moive: movie)
-      //  }
         if let news = self.newsViewModel.news(indexPath.row) {
             cell.configure(news: news)
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
 }
 
@@ -92,9 +93,6 @@ extension ViewController: ViewModelDelegate {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-       
     }
-    
-    
 }
 

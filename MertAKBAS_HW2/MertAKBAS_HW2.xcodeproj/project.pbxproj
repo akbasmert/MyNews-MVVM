@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		412F2E852A0E7E2A00C052FB /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 412F2E842A0E7E2A00C052FB /* SDWebImage */; };
+		412F2E882A0ECB8C00C052FB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412F2E872A0ECB8C00C052FB /* DetailViewController.swift */; };
 		41CC5EF92A0CE04000FBC918 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CC5EF82A0CE04000FBC918 /* AppDelegate.swift */; };
 		41CC5EFB2A0CE04000FBC918 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CC5EFA2A0CE04000FBC918 /* SceneDelegate.swift */; };
 		41CC5EFD2A0CE04000FBC918 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CC5EFC2A0CE04000FBC918 /* ViewController.swift */; };
@@ -25,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		412F2E872A0ECB8C00C052FB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		41CC5EF52A0CE04000FBC918 /* MertAKBAS_HW2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MertAKBAS_HW2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CC5EF82A0CE04000FBC918 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41CC5EFA2A0CE04000FBC918 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				412F2E852A0E7E2A00C052FB /* SDWebImage in Frameworks */,
 				41CC5F122A0D05C400FBC918 /* MertAKBAS_HW2API in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		412F2E862A0ECB3400C052FB /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				412F2E872A0ECB8C00C052FB /* DetailViewController.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
 		41CC5EEC2A0CE04000FBC918 = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +156,7 @@
 		41CC5F392A0D90E100FBC918 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				412F2E862A0ECB3400C052FB /* DetailView */,
 				41CC5F3A2A0D911000FBC918 /* NewsList */,
 				41CC5F3F2A0D929400FBC918 /* LoadingView */,
 			);
@@ -185,6 +198,7 @@
 			name = MertAKBAS_HW2;
 			packageProductDependencies = (
 				41CC5F112A0D05C400FBC918 /* MertAKBAS_HW2API */,
+				412F2E842A0E7E2A00C052FB /* SDWebImage */,
 			);
 			productName = MertAKBAS_HW2;
 			productReference = 41CC5EF52A0CE04000FBC918 /* MertAKBAS_HW2.app */;
@@ -214,6 +228,9 @@
 				Base,
 			);
 			mainGroup = 41CC5EEC2A0CE04000FBC918;
+			packageReferences = (
+				412F2E832A0E7E2A00C052FB /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 41CC5EF62A0CE04000FBC918 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -242,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				412F2E882A0ECB8C00C052FB /* DetailViewController.swift in Sources */,
 				41CC5F032A0CE04000FBC918 /* MertAKBAS_HW2.xcdatamodeld in Sources */,
 				41CC5EFD2A0CE04000FBC918 /* ViewController.swift in Sources */,
 				41CC5F3C2A0D91D200FBC918 /* NewsViewModel.swift in Sources */,
@@ -468,7 +486,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		412F2E832A0E7E2A00C052FB /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		412F2E842A0E7E2A00C052FB /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 412F2E832A0E7E2A00C052FB /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
 		41CC5F112A0D05C400FBC918 /* MertAKBAS_HW2API */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MertAKBAS_HW2API;

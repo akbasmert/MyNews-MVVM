@@ -7,6 +7,7 @@
 
 import UIKit
 import MertAKBAS_HW2API
+import SDWebImage
 
 class NewsListCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
@@ -18,35 +19,15 @@ class NewsListCell: UICollectionViewCell {
     }
 
     func configure(news: News) {
-        preparePosterImage(with: news.multimedia?.first?.url)
+        //preparePosterImage(with: news.multimedia?.first?.url)
+        preparePosterImage(with: news.multimedia?[1].url)
         self.titleLabel.text = news.title
+        self.authorLabel.text = news.byline
     }
     
     private func preparePosterImage(with urlString: String?) {
-        
         if let url = URL(string: urlString ?? "") {
-            DispatchQueue.global().async { [weak self] in
-                if let data = try? Data(contentsOf: url) {
-                    if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self?.imageView.image = image
-                        }
-                    }
-                }
-            }
+            imageView.sd_setImage(with: url)
         }
     }
-    
-    private func loadImage(url: URL) {
-        
-           DispatchQueue.global().async { [weak self] in
-               if let data = try? Data(contentsOf: url) {
-                   if let image = UIImage(data: data) {
-                       DispatchQueue.main.async {
-                           self?.imageView.image = image
-                       }
-                   }
-               }
-           }
-       }
 }
