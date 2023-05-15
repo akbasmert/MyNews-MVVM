@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		412F2E852A0E7E2A00C052FB /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 412F2E842A0E7E2A00C052FB /* SDWebImage */; };
 		412F2E882A0ECB8C00C052FB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412F2E872A0ECB8C00C052FB /* DetailViewController.swift */; };
+		41455D5F2A118E2D004C795D /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41455D5E2A118E2D004C795D /* NewsViewController.swift */; };
+		41455D612A119295004C795D /* DynamicNewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41455D602A119295004C795D /* DynamicNewsCollectionViewCell.swift */; };
 		41CC5EF92A0CE04000FBC918 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CC5EF82A0CE04000FBC918 /* AppDelegate.swift */; };
 		41CC5EFB2A0CE04000FBC918 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CC5EFA2A0CE04000FBC918 /* SceneDelegate.swift */; };
 		41CC5EFD2A0CE04000FBC918 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CC5EFC2A0CE04000FBC918 /* ViewController.swift */; };
@@ -28,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		412F2E872A0ECB8C00C052FB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		41455D5E2A118E2D004C795D /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		41455D602A119295004C795D /* DynamicNewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicNewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		41CC5EF52A0CE04000FBC918 /* MertAKBAS_HW2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MertAKBAS_HW2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CC5EF82A0CE04000FBC918 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41CC5EFA2A0CE04000FBC918 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 			children = (
 				41CC5F422A0D953E00FBC918 /* NewsListCell.swift */,
 				41CC5F432A0D953E00FBC918 /* NewsListCell.xib */,
+				41455D602A119295004C795D /* DynamicNewsCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 			children = (
 				41CC5EFC2A0CE04000FBC918 /* ViewController.swift */,
 				41CC5F3B2A0D91D200FBC918 /* NewsViewModel.swift */,
+				41455D5E2A118E2D004C795D /* NewsViewController.swift */,
 			);
 			path = NewsList;
 			sourceTree = "<group>";
@@ -262,7 +268,9 @@
 				412F2E882A0ECB8C00C052FB /* DetailViewController.swift in Sources */,
 				41CC5F032A0CE04000FBC918 /* MertAKBAS_HW2.xcdatamodeld in Sources */,
 				41CC5EFD2A0CE04000FBC918 /* ViewController.swift in Sources */,
+				41455D5F2A118E2D004C795D /* NewsViewController.swift in Sources */,
 				41CC5F3C2A0D91D200FBC918 /* NewsViewModel.swift in Sources */,
+				41455D612A119295004C795D /* DynamicNewsCollectionViewCell.swift in Sources */,
 				41CC5F3E2A0D923400FBC918 /* LoadingShowable.swift in Sources */,
 				41CC5F472A0D959700FBC918 /* CollectionView+Extension.swift in Sources */,
 				41CC5EF92A0CE04000FBC918 /* AppDelegate.swift in Sources */,

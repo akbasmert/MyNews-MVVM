@@ -24,7 +24,7 @@ protocol NewsViewModelProtocol {
     var numberOfItems: Int { get }
     var cellPadding: Double { get }
     
-    func fetchData()
+    func fetchData(key: String)
     func news(_ index: Int) -> News?
     func calculateCellHeight(collectionViewWidth: Double) -> (width: Double, height: Double)
 }
@@ -36,7 +36,7 @@ protocol ViewModelDelegate: AnyObject {
     func reloadData()
 }
 
-final class NewsViewModel {
+final class NewsViewModel: NSObject {
  
     private var news: [News] = []
     let service: PopularNewsServiceProtocol
@@ -46,11 +46,11 @@ final class NewsViewModel {
         self.service = service
     }
     
-    fileprivate func fetchNews() {
+    fileprivate func fetchNews(key: String) {
         // TODO: Show loading indicator puan için önemli
         // ViewControllarda loading gösterilmesini iste/haber ver
         self.delegate?.showLoadingView()
-        service.fetchPopularNews { [weak self] response in
+        service.fetchPopularNews(key: key) { [weak self] response in
             guard let self else { return }
             // TODO: hide loading
             // ViewControllarda loading gizlemesini iste/haber ver
@@ -59,14 +59,14 @@ final class NewsViewModel {
             case .success(let news):
              //   print("Mert: \(movies)")
                 self.news = news
-                print(news)
                 // TODO: collectionview reload data
                 // View Controllarda collectionview i güncelle.
                 self.delegate?.reloadData()
             case .failure(let error):
                 print("Mert: \(error)")
-            }
+            
         }
+    }
     }
 }
 
@@ -79,8 +79,8 @@ extension NewsViewModel: NewsViewModelProtocol {
         Constants.cellRightPadding
     }
     
-    func fetchData() {
-        fetchNews()
+    func fetchData(key: String) {
+        fetchNews(key: key)
     }
     
     func news(_ index: Int) -> News? {

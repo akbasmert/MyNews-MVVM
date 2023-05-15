@@ -18,18 +18,39 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+//        let windowScene = UIWindowScene(session: session, connectionOptions: connectionOptions)
+//               self.window = UIWindow(windowScene: windowScene)
+//               let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//               guard let rootVC = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController else {
+//                   return
+//               }
+//
+//               let viewModel = NewsViewModel(service: PopularNewsService())
+//               rootVC.newsViewModel = viewModel
+//
+//               self.window?.rootViewController = rootVC
+//               self.window?.makeKeyAndVisible()
         let windowScene = UIWindowScene(session: session, connectionOptions: connectionOptions)
-               self.window = UIWindow(windowScene: windowScene)
-               let storyboard = UIStoryboard(name: "Main", bundle: nil)
-               guard let rootVC = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController else {
-                   return
-               }
-               
-               let viewModel = NewsViewModel(service: PopularNewsService())
-               rootVC.newsViewModel = viewModel
-               
-               self.window?.rootViewController = rootVC
-               self.window?.makeKeyAndVisible()
+        self.window = UIWindow(windowScene: windowScene)
+
+        // Main.storyboard dosyanızdaki root navigation controller'ınızı alın.
+        guard let rootNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController else {
+            return
+        }
+
+        // UINavigationController'ın root view controller'ını alın.
+        guard let rootVC = rootNavigationController.topViewController as? NewsViewController else {
+            return
+        }
+
+        let viewModel = NewsViewModel(service: PopularNewsService())
+        rootVC.newsViewModel = viewModel
+
+        // UIWindow'un root view controller'ını UINavigationController olarak ayarlayın.
+        self.window?.rootViewController = rootNavigationController
+        self.window?.makeKeyAndVisible()
+
+
     }
 
     @available(iOS 13.0, *)
