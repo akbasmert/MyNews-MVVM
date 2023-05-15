@@ -23,6 +23,8 @@ class DetailViewController: UIViewController {
     var imageUrl: String?
     var newsUrl: String?
     
+  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

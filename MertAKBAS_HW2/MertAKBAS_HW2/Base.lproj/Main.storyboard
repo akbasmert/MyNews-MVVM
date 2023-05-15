@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Newss" id="byA-ED-M9X"/>
                     <connections>
-                        <segue destination="kAL-73-r5P" kind="show" identifier="toDetailVC" id="Ijo-2v-8rX"/>
+                        <segue destination="kAL-73-r5P" kind="show" identifier="toDetailVC" id="N44-1S-eh2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -42,9 +42,6 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f4X-zO-JaP">
                                         <rect key="frame" x="0.0" y="0.0" width="369" height="246"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="f4X-zO-JaP" secondAttribute="height" multiplier="2048:1365" id="5tH-LV-nkW"/>
-                                        </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6TL-ah-Pag">
                                         <rect key="frame" x="0.0" y="266" width="369" height="75.666666666666686"/>
@@ -93,6 +90,7 @@
                             <constraint firstAttribute="trailing" secondItem="VLO-5I-PqN" secondAttribute="trailing" constant="12" id="fif-AU-UoT"/>
                             <constraint firstItem="VLO-5I-PqN" firstAttribute="top" secondItem="y8o-is-Oz9" secondAttribute="top" constant="20" id="xX7-Dg-41O"/>
                             <constraint firstItem="y8o-is-Oz9" firstAttribute="trailing" secondItem="WfM-wk-YVE" secondAttribute="trailing" constant="12" id="yAQ-uE-ehP"/>
+                            <constraint firstItem="f4X-zO-JaP" firstAttribute="height" secondItem="0le-4w-gwt" secondAttribute="height" multiplier="0.288732" id="ym5-3E-GUj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="DetailVC" id="ifl-Pq-lHw"/>
@@ -133,9 +131,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

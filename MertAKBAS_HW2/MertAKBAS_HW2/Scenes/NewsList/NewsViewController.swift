@@ -14,6 +14,7 @@ class NewsViewController: UIViewController, LoadingShowable {
     var newsAuthor: String?
     var newsUrl: String?
     var key: String = "home"
+    var viewModel: HeaderCollectionViewViewModel = HeaderCollectionViewViewModel(headerDataModel: [DynamicHeaderCVViewModel(title: "home"),DynamicHeaderCVViewModel(title: "arts"),DynamicHeaderCVViewModel(title: "tecnology"),DynamicHeaderCVViewModel(title: "magazine"),DynamicHeaderCVViewModel(title: "sports"),DynamicHeaderCVViewModel(title: "home"),DynamicHeaderCVViewModel(title: "home"),DynamicHeaderCVViewModel(title: "home")])
     
     var newsViewModel: NewsViewModelProtocol! {
         didSet {
@@ -24,25 +25,52 @@ class NewsViewController: UIViewController, LoadingShowable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         newsViewModel.fetchData(key: self.key)
+
     }
     
         override func viewDidLoad() {
             super.viewDidLoad()
             
+            view.addSubview(headerCollectionView)
             view.addSubview(collectionView)
+            
             NSLayoutConstraint.activate([
-                collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
+                headerCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                  headerCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                  headerCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                  headerCollectionView.heightAnchor.constraint(equalToConstant: 50.0),
+                  
+                  collectionView.topAnchor.constraint(equalTo: headerCollectionView.bottomAnchor),
+                  collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                  collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                  collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+              ])
         }
         
+    private lazy var headerCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.estimatedItemSize =  UICollectionViewFlowLayout.automaticSize  //CGSize(width: 20, height: 40.0)
+     
+        let view = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        view.translatesAutoresizingMaskIntoConstraints = false
+       // view.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: -16, right: 16)
+        view.delegate = self
+        view.dataSource = self
+        view.backgroundColor = .lightGray
+        view.showsHorizontalScrollIndicator = false
+        
+        view.register(HeaderCollectionViewCell.self, forCellWithReuseIdentifier: HeaderCollectionViewCell.reuseIdentifier)
+        view.reloadData()
+        
+        return view
+    }()
+    
         private lazy var collectionView: UICollectionView = {
             
            let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
-            layout.estimatedItemSize =  UICollectionViewFlowLayout.automaticSize // CGSize(width: self.view.bounds.size.width, height: 40.0)
+            layout.estimatedItemSize = CGSize(width: self.view.bounds.size.width, height: 40.0)
            
             let view = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -51,9 +79,6 @@ class NewsViewController: UIViewController, LoadingShowable {
             view.dataSource = self
             
             view.backgroundColor = .lightGray
-            
-          
-            
             view.register(DynamicNewsCollectionViewCell.self, forCellWithReuseIdentifier: DynamicNewsCollectionViewCell.reuseIdentifier)
             view.reloadData()
             return view
@@ -63,18 +88,37 @@ class NewsViewController: UIViewController, LoadingShowable {
 
     extension NewsViewController: UICollectionViewDataSource {
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return newsViewModel.numberOfItems
+            
+            if self.collectionView == collectionView {
+                return  newsViewModel.numberOfItems
+            } else {
+                return  viewModel.headerDataModel.count
+            }
         }
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DynamicNewsCollectionViewCell.reuseIdentifier, for: indexPath) as? DynamicNewsCollectionViewCell else {
-                fatalError("no cell")
+          
+            if self.collectionView == collectionView {
+                
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DynamicNewsCollectionViewCell.reuseIdentifier, for: indexPath) as? DynamicNewsCollectionViewCell else {
+                    fatalError("no cell")
+                }
+                
+                if let news = self.newsViewModel.news(indexPath.row) {
+                    cell.updateSubViews(news: news)
+                }
+                
+                return cell
+            } else {
+                
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderCollectionViewCell.reuseIdentifier, for: indexPath) as? HeaderCollectionViewCell else {
+                    fatalError("no cell")
+                }
+                cell.viewModel = viewModel.headerDataModel[indexPath.row]
+                
+                return cell
             }
-            if let news = self.newsViewModel.news(indexPath.row) {
-                cell.updateSubViews(news: news)
-            }
-            return cell
+           
         }
         
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -107,11 +151,21 @@ class NewsViewController: UIViewController, LoadingShowable {
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             
-            if (self.newsViewModel.news(indexPath.row)) != nil {
+            if self.collectionView == collectionView {
+                
+                if (self.newsViewModel.news(indexPath.row)) != nil {
+                }
+                let width = view.bounds.size.width
+                let newSize = DynamicNewsCollectionViewCell.expectedCardSize(CGSize(width: (width - 36), height: 0.0))
+                
+                return newSize
+                
+            } else {
+                let hvm = viewModel.headerDataModel[indexPath.row]
+                let hnewSize = HeaderCollectionViewCell.expectedCardSize(CGSize(width: 0.0, height: 30), viewModel: hvm)
+                
+                return hnewSize
             }
-            let width = view.bounds.size.width
-            let newSize = DynamicNewsCollectionViewCell.expectedCardSize(CGSize(width: (width - 36)/2, height: 0.0))
-            return newSize
         }
     }
 

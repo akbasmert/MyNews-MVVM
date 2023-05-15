@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let windowScene = UIWindowScene(session: session, connectionOptions: connectionOptions)
 //               self.window = UIWindow(windowScene: windowScene)
 //               let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//               guard let rootVC = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController else {
+//               guard let rootVC = storyboard.instantiateViewController(withIdentifier: "NewsViewController") as? NewsViewController else {
 //                   return
 //               }
 //
@@ -30,15 +30,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //
 //               self.window?.rootViewController = rootVC
 //               self.window?.makeKeyAndVisible()
+//
+        
         let windowScene = UIWindowScene(session: session, connectionOptions: connectionOptions)
         self.window = UIWindow(windowScene: windowScene)
 
-        // Main.storyboard dosyanızdaki root navigation controller'ınızı alın.
         guard let rootNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController else {
             return
         }
 
-        // UINavigationController'ın root view controller'ını alın.
         guard let rootVC = rootNavigationController.topViewController as? NewsViewController else {
             return
         }
@@ -46,11 +46,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewModel = NewsViewModel(service: PopularNewsService())
         rootVC.newsViewModel = viewModel
 
-        // UIWindow'un root view controller'ını UINavigationController olarak ayarlayın.
         self.window?.rootViewController = rootNavigationController
         self.window?.makeKeyAndVisible()
-
-
     }
 
     @available(iOS 13.0, *)

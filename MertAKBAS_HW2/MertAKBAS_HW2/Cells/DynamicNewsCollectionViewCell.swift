@@ -13,71 +13,15 @@ import SDWebImage
         
         static let reuseIdentifier = String(describing: DynamicNewsCollectionViewCell.self)
         
-     
-        
         override init(frame: CGRect) {
             super.init(frame: .zero)
            //  configureAppearance()
              configureSubviews()
         }
-        
-//        required convenience init() {
-//            self.init()
-//             configureAppearance()
-//             configureSubviews()
-//
-//        }
+
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
-        
-//        private lazy var titleLabel: UILabel = {
-//            let view = UILabel()
-//            view.numberOfLines = 0
-//            view.textColor = UIColor.black
-//            view.font = UIFont.boldSystemFont(ofSize: 16.0)
-//            view.translatesAutoresizingMaskIntoConstraints = false
-//            return view
-//        }()
-//
-//
-//        private lazy var messageView: UILabel = {
-//            let view = UILabel()
-//            view.translatesAutoresizingMaskIntoConstraints = false
-//            view.numberOfLines = 0
-//            view.textColor = UIColor.black
-//            view.font = UIFont.boldSystemFont(ofSize: 14.0)
-//            view.lineBreakMode = .byWordWrapping
-//
-//
-//            return view
-//        }()
-//
-//        private lazy var imageView: UIImageView = {
-//            let view = UIImageView()
-//            view.translatesAutoresizingMaskIntoConstraints = false
-//
-//            view.layer.cornerRadius = 10
-//            view.clipsToBounds = true
-//            view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-//
-//            NSLayoutConstraint.activate([
-//                view.widthAnchor.constraint(equalToConstant: 150.0),
-//                view.heightAnchor.constraint(equalToConstant: 150.0)
-//            ])
-//
-//            return view
-//        }()
-//
-//        private lazy var containerView: UIStackView = {
-//            let view = UIStackView(arrangedSubviews: [imageView,titleLabel,  messageView])
-//            view.translatesAutoresizingMaskIntoConstraints = false
-//            view.backgroundColor = .blue
-//            view.layer.cornerRadius = 12.0
-//            view.axis = .vertical
-//            view.spacing = 12.0
-//            return view
-//        }()
         
         private lazy var titleLabel: UILabel = {
             let view = UILabel()
@@ -102,22 +46,6 @@ import SDWebImage
             return view
         }()
       
-
-
-
-
-//        private lazy var imageView: UIImageView = {
-//            let view = UIImageView()
-//            view.translatesAutoresizingMaskIntoConstraints = false
-//            view.layer.cornerRadius = 12.0
-//            view.clipsToBounds = true
-//            view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-//            NSLayoutConstraint.activate([
-//                view.widthAnchor.constraint(equalToConstant: 150.0),
-//                view.heightAnchor.constraint(equalToConstant: 150.0)
-//            ])
-//            return view
-//        }()
         private lazy var imageView: UIImageView = {
             let view = UIImageView()
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -135,8 +63,6 @@ import SDWebImage
             return view
         }()
 
-        
-        
         private lazy var LabelContainerView: UIStackView = {
             let view = UIStackView(arrangedSubviews: [titleLabel, messageView])
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -207,10 +133,6 @@ import SDWebImage
             }
         }
     }
-
-
-
-
 
     private extension DynamicNewsCollectionViewCell {
 
