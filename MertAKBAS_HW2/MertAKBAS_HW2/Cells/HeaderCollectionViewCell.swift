@@ -11,7 +11,6 @@ class HeaderCollectionViewCell: UICollectionViewCell {
     
     static let reuseIdentifier = String(describing: HeaderCollectionViewCell.self)
     
-    
     var viewModel: DynamicHeaderCVViewModel? {
         didSet {
             updateSubViews()
@@ -21,12 +20,12 @@ class HeaderCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                        containerView.backgroundColor = .darkGray
-                        titleLabel.textColor = .white
-                    } else {
-                        containerView.backgroundColor = .systemGray4
-                        titleLabel.textColor = .black
-                    }
+                containerView.backgroundColor = .darkGray
+                titleLabel.textColor = .white
+            } else {
+                containerView.backgroundColor = .systemGray4
+                titleLabel.textColor = .black
+            }
         }
     }
     
@@ -39,13 +38,11 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         self.init()
         self.viewModel = viewModel
          configureSubviews()
-        
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
     
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
@@ -56,9 +53,6 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-  
-
-
     private lazy var containerView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [titleLabel])
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -78,7 +72,6 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         cons.isActive = true
         return cons
     }()
-    
 }
 
 extension HeaderCollectionViewCell {
@@ -87,6 +80,7 @@ extension HeaderCollectionViewCell {
                                  DynamicHeaderCVViewModel) -> CGSize {
         let view = HeaderCollectionViewCell(viewModel: viewModel)
         let acsize = view.systemLayoutSizeFitting(CGSize(width: 0.0, height: targetSize.height), withHorizontalFittingPriority: .fittingSizeLevel, verticalFittingPriority: .required)
+        
         return acsize
     }
 
@@ -97,7 +91,6 @@ extension HeaderCollectionViewCell {
     }
 }
 
-
 extension HeaderCollectionViewCell {
     
     override func prepareForReuse() {
@@ -106,22 +99,19 @@ extension HeaderCollectionViewCell {
     }
     
     private func updateSubViews() {
-        
         guard let vm = viewModel else {
             return
         }
         titleLabel.text = vm.title
     }
-    
-  
 }
 
 private extension HeaderCollectionViewCell {
-    
     func configureSubviews() {
         contentView.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([contentView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
         containerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)])
     }
+    
 }
