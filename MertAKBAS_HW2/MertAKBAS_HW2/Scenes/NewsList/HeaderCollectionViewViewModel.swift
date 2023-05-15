@@ -23,7 +23,7 @@ class HeaderCollectionViewViewModel: NSObject {
 
 struct DynamicHeaderCVViewModel {
     var title: String
-  
+    
     init(title: String) {
         self.title = title
     }

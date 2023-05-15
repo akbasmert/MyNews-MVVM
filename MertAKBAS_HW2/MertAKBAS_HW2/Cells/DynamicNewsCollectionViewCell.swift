@@ -34,7 +34,7 @@ import SDWebImage
             return view
         }()
 
-        private lazy var messageView: UILabel = {
+        private lazy var authorLabel: UILabel = {
             let view = UILabel()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.numberOfLines = 0
@@ -64,7 +64,7 @@ import SDWebImage
         }()
 
         private lazy var LabelContainerView: UIStackView = {
-            let view = UIStackView(arrangedSubviews: [titleLabel, messageView])
+            let view = UIStackView(arrangedSubviews: [titleLabel, authorLabel])
             view.translatesAutoresizingMaskIntoConstraints = false
             view.axis = .vertical
             view.spacing = 10.0
@@ -121,9 +121,10 @@ import SDWebImage
         }
         
          func updateSubViews(news: News) {
-            
-            titleLabel.text = news.title
-            messageView.text = news.byline
+             if news.title == ""  {self.titleLabel.text = "Title not fouand"} else {self.titleLabel.text = news.title}
+             if news.byline != "" {self.authorLabel.text = news.byline} else {self.authorLabel.text = "Byline not found"}
+         
+
             preparePosterImage(with: news.multimedia?[1].url)
              
         }

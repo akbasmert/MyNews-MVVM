@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 import UIKit
 
 public protocol PopularNewsServiceProtocol: AnyObject {
@@ -17,23 +18,23 @@ public class PopularNewsService: PopularNewsServiceProtocol {
     public init() {}
     public func fetchPopularNews(key: String, completion: @escaping (Result<[News],Error>) -> Void) {
         
-        let urlStr = "https://api.nytimes.com/svc/topstories/v2/\(key).json?api-key=HGhvelkswdspalqFAoZjJ87OFhXxGARa"
-        let decoder = Decoders.dateDecoder
-        
-        guard let url = URL(string: urlStr) else {
-            return
-        }
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                return
+        let urlString = "https://api.nytimes.com/svc/topstories/v2/\(key).json?api-key=HGhvelkswdspalqFAoZjJ87OFhXxGARa"
+
+        AF.request(urlString).responseData { response in
+            switch response.result {
+            case.success(let data):
+                let decoder = Decoders.dateDecoder
+                
+                do {
+                    let response = try decoder.decode(PopularNewsResponse.self, from: data)
+                    completion(.success(response.results))
+                } catch {
+                    print("********JSON DECODE ERROR**********")
+                }
+            case.failure(let error):
+                print("********* GEÇİÇİ BİR HATA OLUŞTU \(error.localizedDescription) ***********")
+                
             }
-            do {
-                let response = try decoder.decode(PopularNewsResponse.self, from: data)
-                completion(.success(response.results))
-            } catch {
-                print("********JSON DECODE ERROR**********")
-            }
         }
-        task.resume()
     }
 }

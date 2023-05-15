@@ -14,7 +14,7 @@ class NewsViewController: UIViewController, LoadingShowable {
     var newsAuthor: String?
     var newsUrl: String?
     var key: String = "home"
-    var viewModel: HeaderCollectionViewViewModel = HeaderCollectionViewViewModel(headerDataModel: [DynamicHeaderCVViewModel(title: "home"),DynamicHeaderCVViewModel(title: "arts"),DynamicHeaderCVViewModel(title: "tecnology"),DynamicHeaderCVViewModel(title: "magazine"),DynamicHeaderCVViewModel(title: "sports"),DynamicHeaderCVViewModel(title: "home"),DynamicHeaderCVViewModel(title: "home"),DynamicHeaderCVViewModel(title: "home")])
+    var viewModel: HeaderCollectionViewViewModel = HeaderCollectionViewViewModel(headerDataModel: [DynamicHeaderCVViewModel(title: "home"),DynamicHeaderCVViewModel(title: "automobiles"),DynamicHeaderCVViewModel(title: "arts"),DynamicHeaderCVViewModel(title: "books"),DynamicHeaderCVViewModel(title: "travel"),DynamicHeaderCVViewModel(title: "magazine"),DynamicHeaderCVViewModel(title: "business"),DynamicHeaderCVViewModel(title: "food")])
     
     var newsViewModel: NewsViewModelProtocol! {
         didSet {
@@ -25,18 +25,22 @@ class NewsViewController: UIViewController, LoadingShowable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         newsViewModel.fetchData(key: self.key)
-
+      
+      
     }
     
         override func viewDidLoad() {
             super.viewDidLoad()
+            
+            let firstIndexPath = IndexPath(item: 0, section: 0)
+            headerCollectionView.selectItem(at: firstIndexPath, animated: true, scrollPosition: .left)
             
             view.addSubview(headerCollectionView)
             view.addSubview(collectionView)
             
             NSLayoutConstraint.activate([
                 headerCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                  headerCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                headerCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
                   headerCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                   headerCollectionView.heightAnchor.constraint(equalToConstant: 50.0),
                   
@@ -62,7 +66,7 @@ class NewsViewController: UIViewController, LoadingShowable {
         
         view.register(HeaderCollectionViewCell.self, forCellWithReuseIdentifier: HeaderCollectionViewCell.reuseIdentifier)
         view.reloadData()
-        
+      
         return view
     }()
     
@@ -122,17 +126,52 @@ class NewsViewController: UIViewController, LoadingShowable {
         }
         
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-           
-            if let news = self.newsViewModel.news(indexPath.row) {
-                self.imageUrl = news.multimedia?[0].url
-                self.newsTitle = news.title
-                self.newsDescription = news.abstract
-                self.newsAuthor = news.byline
-                self.newsUrl = news.url
-            }
             
-            performSegue(withIdentifier: "toDetailVC", sender: nil)
-            collectionView.deselectItem(at: indexPath , animated: true)
+            if self.collectionView == collectionView {
+                
+                if let news = self.newsViewModel.news(indexPath.row) {
+                    self.imageUrl = news.multimedia?[0].url
+                    self.newsTitle = news.title
+                    self.newsDescription = news.abstract
+                    self.newsAuthor = news.byline
+                    self.newsUrl = news.url
+                }
+                
+                performSegue(withIdentifier: "toDetailVC", sender: nil)
+                collectionView.deselectItem(at: indexPath , animated: true)
+                
+            } else {
+                
+                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+                switch indexPath.row {
+                case 0:
+                    self.key = "home"
+                    newsViewModel.fetchData(key: self.key)
+                case 1:
+                    self.key = "automobiles"
+                    newsViewModel.fetchData(key: self.key)
+                case 2:
+                    self.key = "arts"
+                    newsViewModel.fetchData(key: self.key)
+                case 3:
+                    self.key = "books"
+                    newsViewModel.fetchData(key: self.key)
+                case 4:
+                    self.key = "travel"
+                    newsViewModel.fetchData(key: self.key)
+                case 5:
+                    self.key = "business"
+                    newsViewModel.fetchData(key: self.key)
+                case 6:
+                    self.key = "food"
+                    newsViewModel.fetchData(key: self.key)
+                default:
+                    self.key = "world"
+                    newsViewModel.fetchData(key: self.key)
+                }
+               
+                
+            }
         }
         
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

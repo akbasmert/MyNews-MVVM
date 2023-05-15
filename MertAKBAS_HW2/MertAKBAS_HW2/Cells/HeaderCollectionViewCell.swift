@@ -11,9 +11,22 @@ class HeaderCollectionViewCell: UICollectionViewCell {
     
     static let reuseIdentifier = String(describing: HeaderCollectionViewCell.self)
     
+    
     var viewModel: DynamicHeaderCVViewModel? {
         didSet {
             updateSubViews()
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                        containerView.backgroundColor = .darkGray
+                        titleLabel.textColor = .white
+                    } else {
+                        containerView.backgroundColor = .systemGray4
+                        titleLabel.textColor = .black
+                    }
         }
     }
     
@@ -32,6 +45,8 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.numberOfLines = 1
@@ -47,10 +62,13 @@ class HeaderCollectionViewCell: UICollectionViewCell {
     private lazy var containerView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [titleLabel])
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .blue
+        view.backgroundColor = .systemGray4
         view.layer.cornerRadius = 12.0
         view.axis = .horizontal
         view.spacing = 12.0
+        view.isLayoutMarginsRelativeArrangement = true
+        view.layoutMargins = UIEdgeInsets(top: 0.0, left: 12.0, bottom: 0.0, right: 12.0)
+        
         return view
     }()
     
@@ -92,10 +110,10 @@ extension HeaderCollectionViewCell {
         guard let vm = viewModel else {
             return
         }
-        
         titleLabel.text = vm.title
-        
     }
+    
+  
 }
 
 private extension HeaderCollectionViewCell {
