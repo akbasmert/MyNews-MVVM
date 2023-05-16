@@ -8,6 +8,7 @@
 import UIKit
 
 class LoadingView {
+    var timer: Bool = false
     var acrivityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     static let shared = LoadingView()
     var blurView: UIVisualEffectView = UIVisualEffectView()
@@ -34,6 +35,10 @@ class LoadingView {
         UIApplication.shared.windows.first?.addSubview(blurView)
         blurView.translatesAutoresizingMaskIntoConstraints = false
         acrivityIndicator.startAnimating()
+//        Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { timer in
+//            print("timer çalıştı")
+//            self.hideLoading()
+//        }
     }
     
     func hideLoading() {

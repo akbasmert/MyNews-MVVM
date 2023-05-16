@@ -4,12 +4,11 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Newss-->
+        <!--My News-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="NewsViewController" id="BYZ-38-t0r" customClass="NewsViewController" customModule="MertAKBAS_HW2" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +18,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Newss" id="byA-ED-M9X"/>
+                    <navigationItem key="navigationItem" title="My News" id="byA-ED-M9X"/>
                     <connections>
                         <segue destination="kAL-73-r5P" kind="show" identifier="toDetailVC" id="N44-1S-eh2"/>
                     </connections>
@@ -28,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="5570.2290076335876" y="-27.464788732394368"/>
         </scene>
-        <!--DetailVC-->
+        <!--News Detail-->
         <scene sceneID="oOH-2c-7fL">
             <objects>
                 <viewController id="kAL-73-r5P" customClass="DetailViewController" customModule="MertAKBAS_HW2" customModuleProvider="target" sceneMemberID="viewController">
@@ -68,13 +67,12 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WfM-wk-YVE">
-                                <rect key="frame" x="12" y="748.66666666666663" width="369" height="34.333333333333371"/>
-                                <color key="backgroundColor" name="AccentColor"/>
+                                <rect key="frame" x="12" y="748" width="369" height="30"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button" cornerStyle="large">
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
+                                <state key="normal" title="See more">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="seeMoreButton:" destination="kAL-73-r5P" eventType="touchUpInside" id="ttl-ti-kS0"/>
                                 </connections>
@@ -83,7 +81,7 @@
                         <viewLayoutGuide key="safeArea" id="y8o-is-Oz9"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="y8o-is-Oz9" firstAttribute="bottom" secondItem="WfM-wk-YVE" secondAttribute="bottom" constant="35" id="Fqd-40-tUY"/>
+                            <constraint firstItem="y8o-is-Oz9" firstAttribute="bottom" secondItem="WfM-wk-YVE" secondAttribute="bottom" constant="40" id="Fqd-40-tUY"/>
                             <constraint firstItem="WfM-wk-YVE" firstAttribute="leading" secondItem="y8o-is-Oz9" secondAttribute="leading" constant="12" id="KnE-kl-Yyz"/>
                             <constraint firstItem="VLO-5I-PqN" firstAttribute="leading" secondItem="y8o-is-Oz9" secondAttribute="leading" constant="12" id="Pfc-ps-tOU"/>
                             <constraint firstAttribute="trailing" secondItem="VLO-5I-PqN" secondAttribute="trailing" constant="12" id="fif-AU-UoT"/>
@@ -92,7 +90,7 @@
                             <constraint firstItem="f4X-zO-JaP" firstAttribute="height" secondItem="0le-4w-gwt" secondAttribute="height" multiplier="0.288732" id="ym5-3E-GUj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="DetailVC" id="ifl-Pq-lHw"/>
+                    <navigationItem key="navigationItem" title="News Detail" id="ifl-Pq-lHw"/>
                     <connections>
                         <outlet property="authorLabel" destination="1i6-pD-ozP" id="gPp-Uw-jpf"/>
                         <outlet property="descriptionLabel" destination="L3g-TF-5dK" id="5lu-5M-SN0"/>
@@ -114,6 +112,11 @@
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -125,9 +128,4 @@
             <point key="canvasLocation" x="4643.5114503816794" y="-27.464788732394368"/>
         </scene>
     </scenes>
-    <resources>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

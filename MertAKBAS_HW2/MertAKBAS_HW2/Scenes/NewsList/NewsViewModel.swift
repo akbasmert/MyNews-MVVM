@@ -27,6 +27,7 @@ protocol NewsViewModelProtocol {
     func fetchData(key: String)
     func news(_ index: Int) -> News?
     func calculateCellHeight(collectionViewWidth: Double) -> (width: Double, height: Double)
+    func headerNewsDidSelect( index: IndexPath)
 }
 
 // ViewControllerda kullanacağımız fonksiyonları burada listeledik
@@ -71,6 +72,38 @@ final class NewsViewModel: NSObject {
 }
 
 extension NewsViewModel: NewsViewModelProtocol {
+    func headerNewsDidSelect(index: IndexPath) {
+        switch index.row {
+        case 0:
+            
+            fetchData(key: "home")
+           
+        case 1:
+            
+            fetchData(key: "automobiles")
+            
+        case 2:
+            
+            fetchData(key: "arts")
+        case 3:
+           
+            fetchData(key: "health")
+        case 4:
+           
+            fetchData(key: "travel")
+        case 5:
+           
+            fetchData(key: "world")
+        case 6:
+            
+            fetchData(key:  "business")
+            
+        default:
+           
+            fetchData(key:  "food")
+        }
+    }
+    
     var numberOfItems: Int {
         news.count
     }

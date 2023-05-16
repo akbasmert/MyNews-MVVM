@@ -30,6 +30,9 @@ class DetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         newsImage.layer.cornerRadius = 15
+        seeMoreButton.layer.cornerRadius = 10.0 // İstenilen köşe yuvarlama değerini burada belirtebilirsiniz
+        seeMoreButton.layer.masksToBounds = true // Köşe yuvarlaması için fazla içeriği kesmek için bu ayarı kullanabilirsiniz
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

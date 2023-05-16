@@ -17,23 +17,27 @@ public class PopularNewsService: PopularNewsServiceProtocol {
     
     public init() {}
     public func fetchPopularNews(key: String, completion: @escaping (Result<[News],Error>) -> Void) {
-        
+
         let urlString = "https://api.nytimes.com/svc/topstories/v2/\(key).json?api-key=HGhvelkswdspalqFAoZjJ87OFhXxGARa"
 
         AF.request(urlString).responseData { response in
             switch response.result {
             case.success(let data):
+
                 let decoder = Decoders.dateDecoder
-                
+
                 do {
                     let response = try decoder.decode(PopularNewsResponse.self, from: data)
                     completion(.success(response.results))
                 } catch {
-                    print("********JSON DECODE ERROR**********")
+                    completion(.failure(error))
+                    print("********JSON DECODE ERROR \(error.localizedDescription) **********")
+
                 }
             case.failure(let error):
+                completion(.failure(error))
                 print("********* GEÇİÇİ BİR HATA OLUŞTU \(error.localizedDescription) ***********")
-                
+
             }
         }
     }

@@ -55,7 +55,9 @@ class DynamicNewsCollectionViewCell: UICollectionViewCell {
         
         let aspectRatioConstraint = NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 3.0/2.0, constant: 0.0)
         aspectRatioConstraint.isActive = true
-        
+  
+
+    
         return view
     }()
 
@@ -79,7 +81,7 @@ class DynamicNewsCollectionViewCell: UICollectionViewCell {
         }
         view.layer.cornerRadius = 12.0
         view.axis = .vertical
-     
+    
         return view
     }()
 

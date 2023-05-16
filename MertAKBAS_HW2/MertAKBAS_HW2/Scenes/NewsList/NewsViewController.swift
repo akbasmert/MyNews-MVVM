@@ -16,7 +16,7 @@ class NewsViewController: UIViewController, LoadingShowable {
     var newsUrl: String?
     var key: String = "home"
     
-    var viewModel: HeaderCollectionViewViewModel = HeaderCollectionViewViewModel(headerDataModel: [DynamicHeaderCVViewModel(title: "home"),DynamicHeaderCVViewModel(title: "automobiles"),DynamicHeaderCVViewModel(title: "arts"),DynamicHeaderCVViewModel(title: "books"),DynamicHeaderCVViewModel(title: "travel"),DynamicHeaderCVViewModel(title: "magazine"),DynamicHeaderCVViewModel(title: "business"),DynamicHeaderCVViewModel(title: "food")])
+    var viewModel: HeaderCollectionViewViewModel = HeaderCollectionViewViewModel(headerDataModel: [DynamicHeaderCVViewModel(title: "home"),DynamicHeaderCVViewModel(title: "automobiles"),DynamicHeaderCVViewModel(title: "arts"),DynamicHeaderCVViewModel(title: "health"),DynamicHeaderCVViewModel(title: "travel"),DynamicHeaderCVViewModel(title: "world"),DynamicHeaderCVViewModel(title: "business"),DynamicHeaderCVViewModel(title: "food")])
     
     var newsViewModel: NewsViewModelProtocol! {
         didSet {
@@ -139,33 +139,11 @@ extension NewsViewController: UICollectionViewDataSource {
             
         } else {
             
-            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
-            switch indexPath.row {
-            case 0:
-                self.key = "home"
-                newsViewModel.fetchData(key: self.key)
-            case 1:
-                self.key = "automobiles"
-                newsViewModel.fetchData(key: self.key)
-            case 2:
-                self.key = "arts"
-                newsViewModel.fetchData(key: self.key)
-            case 3:
-                self.key = "books"
-                newsViewModel.fetchData(key: self.key)
-            case 4:
-                self.key = "travel"
-                newsViewModel.fetchData(key: self.key)
-            case 5:
-                self.key = "business"
-                newsViewModel.fetchData(key: self.key)
-            case 6:
-                self.key = "food"
-                newsViewModel.fetchData(key: self.key)
-            default:
-                self.key = "world"
-                newsViewModel.fetchData(key: self.key)
-            }
+            headerCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+            newsViewModel.headerNewsDidSelect(index: indexPath)
+            
+            let indexPathCollectionView = IndexPath(item: 0, section: 0)
+            self.collectionView.scrollToItem(at: indexPathCollectionView, at: .top, animated: true)
         }
     }
     
