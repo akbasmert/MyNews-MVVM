@@ -23,16 +23,12 @@ class DetailViewController: UIViewController {
     var imageUrl: String?
     var newsUrl: String?
     
-  
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         newsImage.layer.cornerRadius = 15
-        seeMoreButton.layer.cornerRadius = 10.0 // İstenilen köşe yuvarlama değerini burada belirtebilirsiniz
-        seeMoreButton.layer.masksToBounds = true // Köşe yuvarlaması için fazla içeriği kesmek için bu ayarı kullanabilirsiniz
-
+        seeMoreButton.layer.cornerRadius = 10.0
+        seeMoreButton.layer.masksToBounds = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +49,5 @@ class DetailViewController: UIViewController {
             newsImage.sd_setImage(with: url)
         }
     }
-    
 }
 

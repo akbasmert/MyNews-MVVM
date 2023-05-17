@@ -34,17 +34,17 @@ final class NewsViewModel: NSObject {
     }
     
     fileprivate func fetchNews(key: String) {
-        
         self.delegate?.showLoadingView()
         service.fetchPopularNews(key: key) { [weak self] response in
             guard let self else { return }
             self.delegate?.hideLoadingView()
             switch response {
+                
             case .success(let news):
                 self.news = news
                 self.delegate?.reloadData()
-            case .failure(let error):
-                print("Mert: \(error)")
+            case .failure(_):
+                break
             }
         }
     }
@@ -81,6 +81,6 @@ extension NewsViewModel: NewsViewModelProtocol {
     }
     
     func news(_ index: Int) -> News? {
-        news[index] //
+        news[index]
     }
 }

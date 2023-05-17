@@ -29,8 +29,9 @@ class DynamicNewsCollectionViewCell: UICollectionViewCell {
         view.textColor = UIColor.black
         view.font = UIFont.boldSystemFont(ofSize: 16.0)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.required, for: .vertical) // gives priority to content for vertical compression resistance
-        view.setContentCompressionResistancePriority(.required, for: .vertical) // gives priority to content for vertical hugging
+        view.setContentHuggingPriority(.required, for: .vertical)
+        view.setContentCompressionResistancePriority(.required, for: .vertical)
+        
         return view
     }()
 
@@ -41,7 +42,7 @@ class DynamicNewsCollectionViewCell: UICollectionViewCell {
         view.textColor = UIColor.black
         view.font = UIFont.systemFont(ofSize: 12)
         view.lineBreakMode = .byWordWrapping
-        view.setContentHuggingPriority(.required, for: .vertical) // gives priority to content for vertical compression resistance
+        view.setContentHuggingPriority(.required, for: .vertical) 
         view.setContentCompressionResistancePriority(.required, for: .vertical) // gives priority to content for vertical hugging
         return view
     }()

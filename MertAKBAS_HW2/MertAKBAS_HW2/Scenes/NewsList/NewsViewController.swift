@@ -26,7 +26,6 @@ class NewsViewController: UIViewController, LoadingShowable {
        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // newsViewModel.fetchData(key: self.key)
     }
     
     override func viewDidLoad() {
@@ -56,7 +55,7 @@ class NewsViewController: UIViewController, LoadingShowable {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.estimatedItemSize =  UICollectionViewFlowLayout.automaticSize  //CGSize(width: 20, height: 40.0)
+        layout.estimatedItemSize =  UICollectionViewFlowLayout.automaticSize
      
         let view = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -126,6 +125,7 @@ extension NewsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if self.collectionView == collectionView {
+            
             if let news = self.newsViewModel.news(indexPath.row) {
                 self.imageUrl = news.multimedia?[0].url
                 self.newsTitle = news.title
@@ -133,12 +133,12 @@ extension NewsViewController: UICollectionViewDataSource {
                 self.newsAuthor = news.byline
                 self.newsUrl = news.url
             }
+            
             performSegue(withIdentifier: "toDetailVC", sender: nil)
             collectionView.deselectItem(at: indexPath , animated: true)
             
         } else {
             
-           
             newsViewModel.headerNewsDidSelect(index: indexPath)
             headerCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
             
@@ -148,6 +148,7 @@ extension NewsViewController: UICollectionViewDataSource {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "toDetailVC" {
             let destinationDetailVC = segue.destination as! DetailViewController
             destinationDetailVC.imageUrl = self.imageUrl
@@ -164,11 +165,10 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if self.collectionView == collectionView {
-            if (self.newsViewModel.news(indexPath.row)) != nil {}
             let width = view.bounds.size.width
-            let newSize = DynamicNewsCollectionViewCell.expectedCardSize(CGSize(width: (width - 36), height: 0.0))
+            let newsCellSize = DynamicNewsCollectionViewCell.expectedCardSize(CGSize(width: (width - 36), height: 0.0))
             
-            return newSize
+            return newsCellSize
         } else {
             let headerViewModel = viewModel.headerDataModel[indexPath.row]
             let headerNewSize = HeaderCollectionViewCell.expectedCardSize(CGSize(width: 0.0, height: 30), viewModel: headerViewModel)

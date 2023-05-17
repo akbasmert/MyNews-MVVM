@@ -16,7 +16,6 @@
 		41CC5EF92A0CE04000FBC918 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CC5EF82A0CE04000FBC918 /* AppDelegate.swift */; };
 		41CC5EFB2A0CE04000FBC918 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CC5EFA2A0CE04000FBC918 /* SceneDelegate.swift */; };
 		41CC5F002A0CE04000FBC918 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CC5EFE2A0CE04000FBC918 /* Main.storyboard */; };
-		41CC5F032A0CE04000FBC918 /* MertAKBAS_HW2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41CC5F012A0CE04000FBC918 /* MertAKBAS_HW2.xcdatamodeld */; };
 		41CC5F052A0CE04100FBC918 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41CC5F042A0CE04100FBC918 /* Assets.xcassets */; };
 		41CC5F082A0CE04100FBC918 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CC5F062A0CE04100FBC918 /* LaunchScreen.storyboard */; };
 		41CC5F122A0D05C400FBC918 /* MertAKBAS_HW2API in Frameworks */ = {isa = PBXBuildFile; productRef = 41CC5F112A0D05C400FBC918 /* MertAKBAS_HW2API */; };
@@ -35,7 +34,6 @@
 		41CC5EF82A0CE04000FBC918 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41CC5EFA2A0CE04000FBC918 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		41CC5EFF2A0CE04000FBC918 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		41CC5F022A0CE04000FBC918 /* MertAKBAS_HW2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MertAKBAS_HW2.xcdatamodel; sourceTree = "<group>"; };
 		41CC5F042A0CE04100FBC918 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41CC5F072A0CE04100FBC918 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41CC5F092A0CE04100FBC918 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,6 +62,38 @@
 				412F2E872A0ECB8C00C052FB /* DetailViewController.swift */,
 			);
 			path = DetailView;
+			sourceTree = "<group>";
+		};
+		41455D802A1582E5004C795D /* NewsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				41CC5F3B2A0D91D200FBC918 /* NewsViewModel.swift */,
+			);
+			path = NewsViewModel;
+			sourceTree = "<group>";
+		};
+		41455D812A1582F4004C795D /* HeaderCollectionViewViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				41455D642A125C5E004C795D /* HeaderCollectionViewViewModel.swift */,
+			);
+			path = HeaderCollectionViewViewModel;
+			sourceTree = "<group>";
+		};
+		41455D822A158355004C795D /* DynamicNewsCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				41455D602A119295004C795D /* DynamicNewsCollectionViewCell.swift */,
+			);
+			path = DynamicNewsCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		41455D832A158367004C795D /* HeaderCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				41455D622A125A65004C795D /* HeaderCollectionViewCell.swift */,
+			);
+			path = HeaderCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		41CC5EEC2A0CE04000FBC918 = {
@@ -96,7 +126,6 @@
 				41CC5F042A0CE04100FBC918 /* Assets.xcassets */,
 				41CC5F062A0CE04100FBC918 /* LaunchScreen.storyboard */,
 				41CC5F092A0CE04100FBC918 /* Info.plist */,
-				41CC5F012A0CE04000FBC918 /* MertAKBAS_HW2.xcdatamodeld */,
 			);
 			path = MertAKBAS_HW2;
 			sourceTree = "<group>";
@@ -119,8 +148,8 @@
 		41CC5F352A0D8ECE00FBC918 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				41455D602A119295004C795D /* DynamicNewsCollectionViewCell.swift */,
-				41455D622A125A65004C795D /* HeaderCollectionViewCell.swift */,
+				41455D832A158367004C795D /* HeaderCollectionViewCell */,
+				41455D822A158355004C795D /* DynamicNewsCollectionViewCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -128,6 +157,8 @@
 		41CC5F362A0D8ED600FBC918 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				41455D812A1582F4004C795D /* HeaderCollectionViewViewModel */,
+				41455D802A1582E5004C795D /* NewsViewModel */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -154,9 +185,7 @@
 		41CC5F3A2A0D911000FBC918 /* NewsList */ = {
 			isa = PBXGroup;
 			children = (
-				41CC5F3B2A0D91D200FBC918 /* NewsViewModel.swift */,
 				41455D5E2A118E2D004C795D /* NewsViewController.swift */,
-				41455D642A125C5E004C795D /* HeaderCollectionViewViewModel.swift */,
 			);
 			path = NewsList;
 			sourceTree = "<group>";
@@ -249,7 +278,6 @@
 			files = (
 				412F2E882A0ECB8C00C052FB /* DetailViewController.swift in Sources */,
 				41455D652A125C5E004C795D /* HeaderCollectionViewViewModel.swift in Sources */,
-				41CC5F032A0CE04000FBC918 /* MertAKBAS_HW2.xcdatamodeld in Sources */,
 				41455D632A125A65004C795D /* HeaderCollectionViewCell.swift in Sources */,
 				41455D5F2A118E2D004C795D /* NewsViewController.swift in Sources */,
 				41CC5F3C2A0D91D200FBC918 /* NewsViewModel.swift in Sources */,
@@ -496,19 +524,6 @@
 			productName = MertAKBAS_HW2API;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		41CC5F012A0CE04000FBC918 /* MertAKBAS_HW2.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				41CC5F022A0CE04000FBC918 /* MertAKBAS_HW2.xcdatamodel */,
-			);
-			currentVersion = 41CC5F022A0CE04000FBC918 /* MertAKBAS_HW2.xcdatamodel */;
-			path = MertAKBAS_HW2.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 41CC5EED2A0CE04000FBC918 /* Project object */;
 }
