@@ -48,7 +48,7 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         let view = UILabel()
         view.numberOfLines = 1
         view.textColor = UIColor.black
-        view.font = UIFont.boldSystemFont(ofSize: 18.0)
+        view.font = UIFont.boldSystemFont(ofSize: 16.0)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

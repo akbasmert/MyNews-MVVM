@@ -16,7 +16,7 @@ class NewsViewController: UIViewController, LoadingShowable {
     var newsUrl: String?
     var key: String = "home"
     
-    var viewModel: HeaderCollectionViewViewModel = HeaderCollectionViewViewModel(headerDataModel: [DynamicHeaderCVViewModel(title: "home"),DynamicHeaderCVViewModel(title: "automobiles"),DynamicHeaderCVViewModel(title: "arts"),DynamicHeaderCVViewModel(title: "health"),DynamicHeaderCVViewModel(title: "travel"),DynamicHeaderCVViewModel(title: "world"),DynamicHeaderCVViewModel(title: "business"),DynamicHeaderCVViewModel(title: "food")])
+    var viewModel: HeaderCollectionViewViewModel = HeaderCollectionViewViewModel(headerDataModel: [DynamicHeaderCVViewModel(title: "HOME"),DynamicHeaderCVViewModel(title: "AUTOMOBİLES"),DynamicHeaderCVViewModel(title: "ARTS"),DynamicHeaderCVViewModel(title: "HEALTH"),DynamicHeaderCVViewModel(title: "TRAVEL"),DynamicHeaderCVViewModel(title: "WORLD"),DynamicHeaderCVViewModel(title: "BUSİNESS"),DynamicHeaderCVViewModel(title: "FOOD")])
     
     var newsViewModel: NewsViewModelProtocol! {
         didSet {
@@ -26,7 +26,7 @@ class NewsViewController: UIViewController, LoadingShowable {
        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        newsViewModel.fetchData(key: self.key)
+        // newsViewModel.fetchData(key: self.key)
     }
     
     override func viewDidLoad() {
@@ -39,8 +39,8 @@ class NewsViewController: UIViewController, LoadingShowable {
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            headerCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+              headerCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+              headerCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
               headerCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
               headerCollectionView.heightAnchor.constraint(equalToConstant: 50.0),
               
@@ -49,6 +49,7 @@ class NewsViewController: UIViewController, LoadingShowable {
               collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
               collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
           ])
+        newsViewModel.fetchData(key: self.key)
     }
         
     private lazy var headerCollectionView: UICollectionView = {
@@ -73,8 +74,8 @@ class NewsViewController: UIViewController, LoadingShowable {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.estimatedItemSize = CGSize(width: self.view.bounds.size.width, height: 40.0)
-       
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+
         let view = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentInset = UIEdgeInsets(top: 16, left: 12, bottom: 16, right: 12)
@@ -83,6 +84,7 @@ class NewsViewController: UIViewController, LoadingShowable {
         view.backgroundColor = .lightGray
         view.register(DynamicNewsCollectionViewCell.self, forCellWithReuseIdentifier: DynamicNewsCollectionViewCell.reuseIdentifier)
         view.reloadData()
+        
         return view
     }()
 }
@@ -98,9 +100,8 @@ extension NewsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      
+    
         if self.collectionView == collectionView {
-            
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DynamicNewsCollectionViewCell.reuseIdentifier, for: indexPath) as? DynamicNewsCollectionViewCell else {
                 fatalError("no cell")
             }
@@ -125,7 +126,6 @@ extension NewsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if self.collectionView == collectionView {
-            
             if let news = self.newsViewModel.news(indexPath.row) {
                 self.imageUrl = news.multimedia?[0].url
                 self.newsTitle = news.title
@@ -133,14 +133,14 @@ extension NewsViewController: UICollectionViewDataSource {
                 self.newsAuthor = news.byline
                 self.newsUrl = news.url
             }
-            
             performSegue(withIdentifier: "toDetailVC", sender: nil)
             collectionView.deselectItem(at: indexPath , animated: true)
             
         } else {
             
-            headerCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+           
             newsViewModel.headerNewsDidSelect(index: indexPath)
+            headerCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
             
             let indexPathCollectionView = IndexPath(item: 0, section: 0)
             self.collectionView.scrollToItem(at: indexPathCollectionView, at: .top, animated: true)
@@ -164,19 +164,16 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if self.collectionView == collectionView {
-            
-            if (self.newsViewModel.news(indexPath.row)) != nil {
-            }
+            if (self.newsViewModel.news(indexPath.row)) != nil {}
             let width = view.bounds.size.width
             let newSize = DynamicNewsCollectionViewCell.expectedCardSize(CGSize(width: (width - 36), height: 0.0))
             
             return newSize
-            
         } else {
-            let hvm = viewModel.headerDataModel[indexPath.row]
-            let hnewSize = HeaderCollectionViewCell.expectedCardSize(CGSize(width: 0.0, height: 30), viewModel: hvm)
+            let headerViewModel = viewModel.headerDataModel[indexPath.row]
+            let headerNewSize = HeaderCollectionViewCell.expectedCardSize(CGSize(width: 0.0, height: 30), viewModel: headerViewModel)
             
-            return hnewSize
+            return headerNewSize
         }
     }
 }

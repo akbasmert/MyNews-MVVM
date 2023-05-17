@@ -120,7 +120,6 @@ extension DynamicNewsCollectionViewCell {
          if news.byline != "" {self.authorLabel.text = news.byline} else {self.authorLabel.text = "Byline not found"}
 
         preparePosterImage(with: news.multimedia?[1].url)
-         
     }
     
     private func preparePosterImage(with urlString: String?) {
@@ -138,3 +137,4 @@ private extension DynamicNewsCollectionViewCell {
         containerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)])
     }
 }
+

@@ -23,11 +23,8 @@ class LoadingView {
         blurView.frame = UIWindow(frame: UIScreen.main.bounds).frame
         acrivityIndicator.center = blurView.center
         acrivityIndicator.hidesWhenStopped = true
-        if #available(iOS 13.0, *) {
-            acrivityIndicator.style = .large
-        } else {
-            // Fallback on earlier versions
-        }
+        acrivityIndicator.style = .large
+      
         blurView.contentView.addSubview(acrivityIndicator)
     }
     
@@ -35,10 +32,6 @@ class LoadingView {
         UIApplication.shared.windows.first?.addSubview(blurView)
         blurView.translatesAutoresizingMaskIntoConstraints = false
         acrivityIndicator.startAnimating()
-//        Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { timer in
-//            print("timer çalıştı")
-//            self.hideLoading()
-//        }
     }
     
     func hideLoading() {

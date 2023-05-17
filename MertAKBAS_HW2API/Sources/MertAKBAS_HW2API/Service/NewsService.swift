@@ -31,12 +31,12 @@ public class PopularNewsService: PopularNewsServiceProtocol {
                     completion(.success(response.results))
                 } catch {
                     completion(.failure(error))
-                    print("********JSON DECODE ERROR \(error.localizedDescription) **********")
+                  //  print("********JSON DECODE ERROR \(error.localizedDescription) **********")
 
                 }
             case.failure(let error):
                 completion(.failure(error))
-                print("********* GEÇİÇİ BİR HATA OLUŞTU \(error.localizedDescription) ***********")
+             //   print("********* GEÇİÇİ BİR HATA OLUŞTU \(error.localizedDescription) ***********")
 
             }
         }

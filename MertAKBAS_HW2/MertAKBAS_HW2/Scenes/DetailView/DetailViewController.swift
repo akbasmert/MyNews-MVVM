@@ -44,8 +44,7 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func seeMoreButton(_ sender: Any) {
-//        let safariVC = detailViewModel.safariService(url: newsUrl!) ?? UIViewController()
-        let safariVC = SFSafariViewController(url: URL(string: newsUrl ?? "https://www.nytimes.com/")!)
+        let safariVC = SFSafariViewController(url: (URL(string: newsUrl ?? "https://www.nytimes.com/") ?? URL(string: "https://www.nytimes.com/"))!)
         present(safariVC, animated: true)
     }
     
