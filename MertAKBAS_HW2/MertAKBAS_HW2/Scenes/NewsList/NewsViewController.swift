@@ -31,10 +31,8 @@ class NewsViewController: UIViewController, LoadingShowable, UINavigationControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   
-    
-        navigationItem.title = "MY NEWS"
-        
+       
+        navigationBarFont()
         
         let firstIndexPath = IndexPath(item: 0, section: 0)
         headerCollectionView.selectItem(at: firstIndexPath, animated: true, scrollPosition: .left)
@@ -54,6 +52,17 @@ class NewsViewController: UIViewController, LoadingShowable, UINavigationControl
               collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
           ])
         newsViewModel.fetchData(key: self.key)
+    }
+    
+    private func navigationBarFont() {
+        if let font = UIFont(name: "American Typewriter", size: 18) {
+            navigationController?.navigationBar.titleTextAttributes = [
+                NSAttributedString.Key.font: font,
+                NSAttributedString.Key.foregroundColor: UIColor.black
+            ]
+        }
+    
+        navigationItem.title = "My News"
     }
         
     private lazy var headerCollectionView: UICollectionView = {
