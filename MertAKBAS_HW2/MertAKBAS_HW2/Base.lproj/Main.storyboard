@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="5570.2290076335876" y="-27.464788732394368"/>
         </scene>
-        <!--News Detail-->
+        <!--NEWS DETAİL-->
         <scene sceneID="oOH-2c-7fL">
             <objects>
                 <viewController id="kAL-73-r5P" customClass="DetailViewController" customModule="MertAKBAS_HW2" customModuleProvider="target" sceneMemberID="viewController">
@@ -91,7 +91,7 @@
                             <constraint firstItem="f4X-zO-JaP" firstAttribute="height" secondItem="0le-4w-gwt" secondAttribute="height" multiplier="0.288732" id="ym5-3E-GUj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="News Detail" id="ifl-Pq-lHw"/>
+                    <navigationItem key="navigationItem" title="NEWS DETAİL" id="ifl-Pq-lHw"/>
                     <connections>
                         <outlet property="authorLabel" destination="1i6-pD-ozP" id="gPp-Uw-jpf"/>
                         <outlet property="descriptionLabel" destination="L3g-TF-5dK" id="5lu-5M-SN0"/>

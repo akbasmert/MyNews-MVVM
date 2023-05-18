@@ -29,6 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let rootVC = rootNavigationController.topViewController as? NewsViewController else {
             return
         }
+        
 
         let viewModel = NewsViewModel(service: PopularNewsService())
         rootVC.newsViewModel = viewModel

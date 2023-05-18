@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 import SafariServices
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var newsImage: UIImageView!
     @IBOutlet weak var seeMoreButton: UIButton!
@@ -25,7 +25,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         newsImage.layer.cornerRadius = 15
         seeMoreButton.layer.cornerRadius = 10.0
         seeMoreButton.layer.masksToBounds = true
@@ -33,11 +33,13 @@ class DetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         fetchImage(with: imageUrl)
         if newsTitle == "" {titleLabel.text = "Title not found"} else {titleLabel.text = newsTitle}
         if newsDescription == "" {descriptionLabel.text = "Description not found."} else { descriptionLabel.text = newsDescription}
         if newsAuthor != "" {authorLabel.text = newsAuthor} else {authorLabel.text = "Author not found"}
     }
+    
     
     @IBAction func seeMoreButton(_ sender: Any) {
         let safariVC = SFSafariViewController(url: (URL(string: newsUrl ?? "https://www.nytimes.com/") ?? URL(string: "https://www.nytimes.com/"))!)

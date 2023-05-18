@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsViewController: UIViewController, LoadingShowable {
+class NewsViewController: UIViewController, LoadingShowable, UINavigationControllerDelegate {
     
     var imageUrl: String?
     var newsTitle: String?
@@ -16,7 +16,7 @@ class NewsViewController: UIViewController, LoadingShowable {
     var newsUrl: String?
     var key: String = "home"
     
-    var viewModel: HeaderCollectionViewViewModel = HeaderCollectionViewViewModel(headerDataModel: [DynamicHeaderCVViewModel(title: "HOME"),DynamicHeaderCVViewModel(title: "AUTOMOBİLES"),DynamicHeaderCVViewModel(title: "ARTS"),DynamicHeaderCVViewModel(title: "HEALTH"),DynamicHeaderCVViewModel(title: "TRAVEL"),DynamicHeaderCVViewModel(title: "WORLD"),DynamicHeaderCVViewModel(title: "BUSİNESS"),DynamicHeaderCVViewModel(title: "FOOD")])
+    var viewModel: HeaderCollectionViewViewModel = HeaderCollectionViewViewModel(headerDataModel: [DynamicHeaderCVViewModel(title: "Home"),DynamicHeaderCVViewModel(title: "Automobiles"),DynamicHeaderCVViewModel(title: "Arts"),DynamicHeaderCVViewModel(title: "Health"),DynamicHeaderCVViewModel(title: "Travel"),DynamicHeaderCVViewModel(title: "World"),DynamicHeaderCVViewModel(title: "Business"),DynamicHeaderCVViewModel(title: "Food")])
     
     var newsViewModel: NewsViewModelProtocol! {
         didSet {
@@ -26,10 +26,15 @@ class NewsViewController: UIViewController, LoadingShowable {
        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+   
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+   
+    
+        navigationItem.title = "MY NEWS"
+        
         
         let firstIndexPath = IndexPath(item: 0, section: 0)
         headerCollectionView.selectItem(at: firstIndexPath, animated: true, scrollPosition: .left)
