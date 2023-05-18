@@ -12,7 +12,7 @@ Two UICollectionViews are used on the News List page.
 Categories have been created for news in HeaderCollectionView. When the selection is made, the Cell shifts to the left and the news list is displayed starting from the first index. News are listed in the second collectionView. Cells are sized automatically according to the content.
 
 ## Demo
-<img src="https://github.com/akbasmert/MertAKBAS_HW2/blob/main/ReadmePhotos/newsGif.gif" width="1200" height="500" />
+<img src="https://github.com/akbasmert/MertAKBAS_HW2/blob/main/ReadmePhotos/newsGif.gif" width="1200" height="470" />
 Note: Above is a gif promoting the app. Downloading late due to file size.
 
 #### News List Page
