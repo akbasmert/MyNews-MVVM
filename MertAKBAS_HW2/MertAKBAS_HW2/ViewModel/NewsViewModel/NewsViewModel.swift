@@ -39,7 +39,6 @@ final class NewsViewModel: NSObject {
             guard let self else { return }
             self.delegate?.hideLoadingView()
             switch response {
-                
             case .success(let news):
                 self.news = news
                 self.delegate?.reloadData()

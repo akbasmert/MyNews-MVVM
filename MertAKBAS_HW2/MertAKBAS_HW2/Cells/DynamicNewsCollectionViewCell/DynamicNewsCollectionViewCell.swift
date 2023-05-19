@@ -15,7 +15,6 @@ class DynamicNewsCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-       //  configureAppearance()
          configureSubviews()
     }
 
@@ -43,7 +42,8 @@ class DynamicNewsCollectionViewCell: UICollectionViewCell {
         view.font = UIFont.systemFont(ofSize: 12)
         view.lineBreakMode = .byWordWrapping
         view.setContentHuggingPriority(.required, for: .vertical) 
-        view.setContentCompressionResistancePriority(.required, for: .vertical) // gives priority to content for vertical hugging
+        view.setContentCompressionResistancePriority(.required, for: .vertical)
+        
         return view
     }()
   
@@ -57,8 +57,6 @@ class DynamicNewsCollectionViewCell: UICollectionViewCell {
         let aspectRatioConstraint = NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 3.0/2.0, constant: 0.0)
         aspectRatioConstraint.isActive = true
   
-
-    
         return view
     }()
 
@@ -75,11 +73,7 @@ class DynamicNewsCollectionViewCell: UICollectionViewCell {
     private lazy var containerView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [imageView, LabelContainerView])
         view.translatesAutoresizingMaskIntoConstraints = false
-        if #available(iOS 13.0, *) {
-            view.backgroundColor = .systemGray4
-        } else {
-            view.backgroundColor = .white
-        }
+        view.backgroundColor = .systemGray4
         view.layer.cornerRadius = 12.0
         view.axis = .vertical
     
@@ -90,6 +84,7 @@ class DynamicNewsCollectionViewCell: UICollectionViewCell {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         let cons = containerView.widthAnchor.constraint(equalToConstant: 1000)
         cons.isActive = true
+        
         return cons
     }()
 }

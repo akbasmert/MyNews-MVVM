@@ -23,11 +23,6 @@ class NewsViewController: UIViewController, LoadingShowable, UINavigationControl
             newsViewModel.delegate = self
         }
     }
-       
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-   
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +56,6 @@ class NewsViewController: UIViewController, LoadingShowable, UINavigationControl
                 NSAttributedString.Key.foregroundColor: UIColor.black
             ]
         }
-    
         navigationItem.title = "My News"
     }
         

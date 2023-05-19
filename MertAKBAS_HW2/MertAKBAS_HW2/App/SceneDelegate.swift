@@ -20,22 +20,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         let windowScene = UIWindowScene(session: session, connectionOptions: connectionOptions)
-        self.window = UIWindow(windowScene: windowScene)
+               self.window = UIWindow(windowScene: windowScene)
 
-        guard let rootNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController else {
-            return
-        }
+               guard let rootNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController else {
+                   return
+               }
 
-        guard let rootVC = rootNavigationController.topViewController as? NewsViewController else {
-            return
-        }
-        
+               guard let rootVC = rootNavigationController.topViewController as? NewsViewController else {
+                   return
+               }
+               
 
-        let viewModel = NewsViewModel(service: PopularNewsService())
-        rootVC.newsViewModel = viewModel
+               let viewModel = NewsViewModel(service: PopularNewsService())
+               rootVC.newsViewModel = viewModel
 
-        self.window?.rootViewController = rootNavigationController
-        self.window?.makeKeyAndVisible()
+               self.window?.rootViewController = rootNavigationController
+               self.window?.makeKeyAndVisible()
     }
 
     @available(iOS 13.0, *)

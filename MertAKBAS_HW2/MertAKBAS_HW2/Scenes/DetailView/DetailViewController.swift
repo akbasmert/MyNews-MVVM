@@ -40,7 +40,6 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
         if newsAuthor != "" {authorLabel.text = newsAuthor} else {authorLabel.text = "Author not found"}
     }
     
-    
     @IBAction func seeMoreButton(_ sender: Any) {
         let safariVC = SFSafariViewController(url: (URL(string: newsUrl ?? "https://www.nytimes.com/") ?? URL(string: "https://www.nytimes.com/"))!)
         present(safariVC, animated: true)

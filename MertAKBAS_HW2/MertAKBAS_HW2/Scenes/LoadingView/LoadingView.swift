@@ -18,7 +18,7 @@ class LoadingView {
     }
     
     func configure() {
-        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
         blurView.translatesAutoresizingMaskIntoConstraints = false
         blurView.frame = UIWindow(frame: UIScreen.main.bounds).frame
         acrivityIndicator.center = blurView.center
@@ -39,7 +39,6 @@ class LoadingView {
             self.blurView.removeFromSuperview()
             self.acrivityIndicator.stopAnimating()
         }
-        
     }
 }
 
